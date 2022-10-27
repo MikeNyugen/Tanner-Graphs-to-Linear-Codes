@@ -9,7 +9,7 @@
       fx:controller="com.mikenyugen.linearcodes.controllers.MessageNodeController"
       onMouseEntered="#mouseEnteredEventHandler"
       onMouseExited="#mouseExitedEventHandler"
-        onMouseClicked="#mouseClickedHandler">
+      onMouseClicked="#mouseClickedHandler">
     <children>
         <StackPane fx:id="stack" layoutY="1.0" prefHeight="50.0" prefWidth="49.0">
             <children>
