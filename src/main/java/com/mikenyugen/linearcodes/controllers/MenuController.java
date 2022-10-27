@@ -21,7 +21,6 @@ public class MenuController implements Initializable {
   @FXML
   private Button submitButton;
 
-  @FXML
   @Override
   public void initialize(URL location, ResourceBundle resources) {}
 

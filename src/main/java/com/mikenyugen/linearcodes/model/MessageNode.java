@@ -1,6 +1,7 @@
 package com.mikenyugen.linearcodes.model;
 
 import com.mikenyugen.linearcodes.controllers.MessageNodeController;
+import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.layout.AnchorPane;
@@ -11,38 +12,51 @@ import static jfxtras.labs.util.event.MouseControlUtil.makeDraggable;
 
 /**
  * Responsible for displaying the message node correctly.
- * <p>
+ *
  * New components must extend from an existing JavaFX component to be displayed.
  */
 public class MessageNode extends AnchorPane {
-  MessageNodeController controller;
+  @FXML
+  MessageNodeController messageNodeController;
 
   public MessageNode() throws IOException {
     super();
-    fxmlSetup();
+    messageNodeSetup();
+    messageNodeController.incrementNodes();
+    makeDraggable(this);
+  }
+
+  /**
+   * Loads FXML and binds the controller.
+   *
+   * @throws IOException if the FXML cannot be loaded
+   */
+  private void messageNodeSetup() throws IOException {
+    // Load FXML
+    FXMLLoader fxmlLoader = fxmlSetup();
+    // Bind FXML to controller
+    messageNodeController = new MessageNodeController();
+    fxmlLoader.setController(messageNodeController);
   }
 
   /**
    * Sets up the FXML for the message node.
    *
-   * @throws IOException if the fxml cannot be loaded
+   * @return a FXML loader object
+   * @throws IOException if the FXML cannot be loaded
    */
-  private void fxmlSetup() throws IOException {
+  private FXMLLoader fxmlSetup() throws IOException {
     try {
-      // Load FXML
-      FXMLLoader loader = new FXMLLoader(getClass().getResource(
+      FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource(
           "/com/mikenyugen/linearcodes/MessageNode.fxml"));
-      // Bind to controller
-      controller = new MessageNodeController();
-      loader.setController(controller);
-      // Make the node draggable
-      makeDraggable(this);
-      // Make node visible
-      Node node = loader.load();
+      Node node = fxmlLoader.load();
       this.getChildren().add(node);
+      return fxmlLoader;
     } catch (IOException e) {
       throw new IOException("FXML loader failure");
     }
   }
+
+
 
 }

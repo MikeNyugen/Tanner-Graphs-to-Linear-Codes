@@ -5,7 +5,8 @@
 <?import javafx.scene.layout.StackPane?>
 <?import javafx.scene.shape.Circle?>
 <Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="62.0"
-      prefWidth="60.0" xmlns="http://javafx.com/javafx" xmlns:fx="http://javafx.com/fxml/1">
+      prefWidth="60.0" xmlns="http://javafx.com/javafx" xmlns:fx="http://javafx.com/fxml/1"
+      fx:controller="com.mikenyugen.linearcodes.controllers.MessageNodeController">
     <children>
         <StackPane fx:id="stack" layoutY="1.0" prefHeight="50.0" prefWidth="49.0">
             <children>
