@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.Pane?>
+
+<Pane xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.mikenyugen.linearcodes.controllers.SpinnerController">
+    <Spinner fx:id="sourceSpinner" editable="true" layoutX="51.0" layoutY="45.0" max="30" maxHeight="-Infinity" maxWidth="-Infinity" min="2" />
+    <Spinner fx:id="paritySpinner" layoutX="51.0" layoutY="135.0" max="29" maxHeight="-Infinity" maxWidth="-Infinity" min="1" />
+</Pane>
+
+

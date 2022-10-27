@@ -29,8 +29,8 @@
                   <content>
                     <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="0.0" minWidth="0.0" prefHeight="693.0" prefWidth="333.0">
                            <children>
-                              <Spinner fx:id="sourceSpinner" editable="true" layoutX="51.0" layoutY="45.0" max="30" maxHeight="-Infinity" maxWidth="-Infinity" min="2" onMouseClicked="#temp"/>
-                              <Spinner fx:id="paritySpinner" layoutX="51.0" layoutY="135.0" max="29" maxHeight="-Infinity" maxWidth="-Infinity" min="1" />
+                               <fx:include source="spinners.fxml" />
+
                               <Label layoutX="91.0" layoutY="22.0" text="Source Bits">
                                  <font>
                                     <Font name="Times New Roman Bold" size="14.0" />
