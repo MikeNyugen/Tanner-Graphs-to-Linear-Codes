@@ -39,6 +39,7 @@ public class MainController implements Initializable {
 
   /**
    * Adds a message node to the canvus.
+   *
    * @param mouseEvent Javafx mouse event
    */
   private void addMessageNode(MouseEvent mouseEvent) {

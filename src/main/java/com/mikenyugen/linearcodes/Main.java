@@ -7,6 +7,9 @@ import javafx.stage.Stage;
 
 import java.io.IOException;
 
+/**
+ * Main class responsible for starting the application.
+ */
 public class Main extends Application {
   /**
    * The number of source bits specified by the user.

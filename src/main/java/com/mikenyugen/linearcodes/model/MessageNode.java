@@ -19,7 +19,7 @@ public class MessageNode extends AnchorPane {
 
   public MessageNode() throws IOException {
     super();
-    FXMLSetup();
+    fxmlSetup();
   }
 
   /**
@@ -27,7 +27,7 @@ public class MessageNode extends AnchorPane {
    *
    * @throws IOException if the fxml cannot be loaded
    */
-  private void FXMLSetup() throws IOException {
+  private void fxmlSetup() throws IOException {
     try {
       // Load FXML
       FXMLLoader loader = new FXMLLoader(getClass().getResource(
@@ -40,7 +40,8 @@ public class MessageNode extends AnchorPane {
       // Make node visible
       Node node = loader.load();
       this.getChildren().add(node);
-    } catch (IOException ix) {
+    } catch (IOException e) {
+      throw new IOException("FXML loader failure");
     }
   }
 

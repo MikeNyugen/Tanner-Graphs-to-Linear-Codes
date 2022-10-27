@@ -5,6 +5,9 @@ import javafx.scene.control.Label;
 import javafx.scene.layout.StackPane;
 import javafx.scene.shape.Circle;
 
+/**
+ * Responsible for querying elements in the message node FXML.
+ */
 public class MessageNodeController {
   @FXML
   StackPane stack;
@@ -13,9 +16,9 @@ public class MessageNodeController {
   @FXML
   Label label;
 
-  public StackPane getStack(){ return stack;}
+  public StackPane getStack() { return stack; }
 
-  public Circle getCircle(){ return circle;}
+  public Circle getCircle() { return circle; }
 
-  public Label getLabel(){ return label;}
+  public Label getLabel() { return label; }
 }
