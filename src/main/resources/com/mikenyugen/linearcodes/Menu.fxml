@@ -1,25 +1,32 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <?import javafx.scene.control.*?>
-<?import javafx.scene.layout.*?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.StackPane?>
 <?import javafx.scene.text.Font?>
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="0.0" minWidth="0.0" prefHeight="693.0" prefWidth="333.0" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.mikenyugen.linearcodes.controllers.MenuController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="0.0" minWidth="0.0" prefHeight="693.0"
+            prefWidth="333.0" xmlns:fx="http://javafx.com/fxml/1"
+            fx:controller="com.mikenyugen.linearcodes.controllers.MenuController">
     <children>
-        <Spinner fx:id="sourceSpinner" editable="true" layoutX="51.0" layoutY="45.0" max="30" maxHeight="-Infinity" maxWidth="-Infinity" min="2" />
-        <Spinner fx:id="paritySpinner" layoutX="51.0" layoutY="135.0" max="29" maxHeight="-Infinity" maxWidth="-Infinity" min="1" />
+        <Spinner fx:id="sourceSpinner" editable="true" layoutX="51.0" layoutY="45.0" max="30" maxHeight="-Infinity"
+                 maxWidth="-Infinity" min="2" onMouseClicked="#sourceSpinnerClickHandler"/>
+        <Spinner fx:id="paritySpinner" layoutX="51.0" layoutY="135.0" max="29" maxHeight="-Infinity"
+                 maxWidth="-Infinity" min="1" onMouseClicked="#paritySpinnerClickHandler"/>
         <Label layoutX="91.0" layoutY="22.0" text="Source Bits">
             <font>
-                <Font name="Times New Roman Bold" size="14.0" />
+                <Font name="Times New Roman Bold" size="14.0"/>
             </font>
         </Label>
         <Label layoutX="90.0" layoutY="115.0" maxHeight="-Infinity" maxWidth="-Infinity" text="Parity Bits">
             <font>
-                <Font name="Times New Roman Bold" size="14.0" />
+                <Font name="Times New Roman Bold" size="14.0"/>
             </font>
         </Label>
-        <Button fx:id="submitButton" layoutX="68.0" layoutY="212.0" maxHeight="-Infinity" maxWidth="-Infinity" mnemonicParsing="false" prefHeight="37.0" prefWidth="120.0" text="Submit" />
+        <Button fx:id="submitButton" layoutX="68.0" layoutY="212.0" maxHeight="-Infinity" maxWidth="-Infinity"
+                mnemonicParsing="false" prefHeight="37.0" prefWidth="120.0" text="Submit"
+                onMouseClicked="#submitButtonClickHandler"/>
         <StackPane fx:id="stackPane" layoutX="-1.0" layoutY="334.0" prefHeight="242.0" prefWidth="255.0">
             <children>
-                <Button mnemonicParsing="false" prefHeight="27.0" prefWidth="81.0" text="Help" />
+                <Button mnemonicParsing="false" prefHeight="27.0" prefWidth="81.0" text="Help"/>
             </children>
         </StackPane>
     </children>

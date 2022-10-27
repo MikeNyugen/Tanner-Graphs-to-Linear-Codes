@@ -4,6 +4,7 @@ import com.mikenyugen.linearcodes.model.MessageNode;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.ToggleButton;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.Pane;
 
 import java.io.IOException;
@@ -20,30 +21,36 @@ public class MainController implements Initializable {
   @FXML
   Pane pane;
 
-  /**
-   * Defines methods that run on initial load of the scene.
-   *
-   * @param location
-   * The location used to resolve relative paths for the root object, or
-   * {@code null} if the location is not known.
-   *
-   * @param resources
-   * The resources used to localize the root object, or {@code null} if
-   * the root object was not localized.
-   */
   @FXML
   @Override
   public void initialize(URL location, ResourceBundle resources) {
-    pane.setOnMouseClicked(event -> {
-      if (addMessageNode.isSelected()) {
-        MessageNode node = new MessageNode();
-        node.setLayoutX(event.getX() - 25);
-        node.setLayoutY(event.getY() - 25);
-        pane.getChildren().add(node);
+  }
 
-      }
-    });
+  /**
+   * Handles click events on the canvas.
+   *
+   * @param mouseEvent Javafx mouse event
+   */
+  public void paneClickEventHandler(MouseEvent mouseEvent) {
+    if (addMessageNode.isSelected()) {
+      addMessageNode(mouseEvent);
+    }
+  }
 
+  /**
+   * Adds a message node to the canvus.
+   * @param mouseEvent Javafx mouse event
+   */
+  private void addMessageNode(MouseEvent mouseEvent) {
+    MessageNode messageNode = null;
+    try {
+      messageNode = new MessageNode();
+    } catch (IOException e) {
+      throw new RuntimeException(e);
+    }
+    messageNode.setLayoutX(mouseEvent.getX() - 25);
+    messageNode.setLayoutY(mouseEvent.getY() - 25);
+    pane.getChildren().add(messageNode);
   }
 
 
