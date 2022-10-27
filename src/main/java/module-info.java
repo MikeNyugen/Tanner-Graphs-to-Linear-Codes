@@ -2,6 +2,7 @@ module com.example.demo1 {
   requires javafx.controls;
   requires javafx.fxml;
   requires java.desktop;
+  requires jfxtras.labs;
 
 
   opens com.mikenyugen.linearcodes to javafx.fxml;

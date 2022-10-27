@@ -8,6 +8,15 @@ import javafx.stage.Stage;
 import java.io.IOException;
 
 public class Main extends Application {
+  /**
+   * The number of source bits specified by the user.
+   */
+  public static int sourceBits;
+  /**
+   * The number of parity bits specified by the user.
+   */
+  public static int parityBits;
+
   @Override
   public void start(Stage stage) throws IOException {
     FXMLLoader fxmlLoader = new FXMLLoader(Main.class.getResource("MainScene.fxml"));
