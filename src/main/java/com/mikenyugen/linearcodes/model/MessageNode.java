@@ -21,36 +21,21 @@ public class MessageNode extends AnchorPane {
 
   public MessageNode() throws IOException {
     super();
-    messageNodeSetup();
+    fxmlSetup();
     makeDraggable(this);
-  }
-
-  /**
-   * Loads FXML and binds the controller.
-   *
-   * @throws IOException if the FXML cannot be loaded
-   */
-  private void messageNodeSetup() throws IOException {
-    // Load FXML
-    FXMLLoader fxmlLoader = fxmlSetup();
-    // Bind FXML to controller
-    messageNodeController = new MessageNodeController();
-    fxmlLoader.setController(messageNodeController);
   }
 
   /**
    * Sets up the FXML for the message node.
    *
-   * @return a FXML loader object
    * @throws IOException if the FXML cannot be loaded
    */
-  private FXMLLoader fxmlSetup() throws IOException {
+  private void fxmlSetup() throws IOException {
     try {
       FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource(
           "/com/mikenyugen/linearcodes/MessageNode.fxml"));
       Node node = fxmlLoader.load();
       this.getChildren().add(node);
-      return fxmlLoader;
     } catch (IOException e) {
       throw new IOException("FXML loader failure");
     }
