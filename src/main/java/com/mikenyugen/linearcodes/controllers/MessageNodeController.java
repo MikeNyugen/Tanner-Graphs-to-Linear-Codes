@@ -4,6 +4,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Label;
 import javafx.scene.layout.StackPane;
+import javafx.scene.paint.Color;
 import javafx.scene.shape.Circle;
 
 import java.net.URL;
@@ -16,33 +17,34 @@ public class MessageNodeController implements Initializable {
   /**
    * The number of message nodes present on the canvas.
    */
-  static int numNodes = 0;
+  static int numNodes = -1;
 
   @FXML
   StackPane stack;
   @FXML
   Circle circle;
   @FXML
-  Label label;
-
-  public StackPane getStack() { return stack; }
-
-  public Circle getCircle() { return circle; }
-
-  public Label getLabel() { return label; }
+  Label messageNodeLabel;
 
   @Override
   public void initialize(URL location, ResourceBundle resources) {
+    numNodes++;
     setupStyles();
   }
 
   private void setupStyles() {
-    label.setText("M" + numNodes);
-    label.setStyle("-fx-font-size: 18");
+    messageNodeLabel.setText("M" + numNodes);
+    messageNodeLabel.setStyle("-fx-font-size: 18");
   }
 
-  public void incrementNodes() {
-    numNodes++;
+  @FXML
+  private void mouseEnteredEventHandler() {
+      circle.setFill(Color.DARKGREY);
+  }
+
+  @FXML
+  private void mouseExitedEventHandler() {
+    circle.setFill(Color.WHITE);
   }
 
 }

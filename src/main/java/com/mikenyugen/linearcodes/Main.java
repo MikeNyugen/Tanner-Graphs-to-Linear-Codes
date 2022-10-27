@@ -24,7 +24,7 @@ public class Main extends Application {
   public void start(Stage stage) throws IOException {
     FXMLLoader fxmlLoader = new FXMLLoader(Main.class.getResource("MainScene.fxml"));
     Scene scene = new Scene(fxmlLoader.load(), 1277, 777);
-    scene.getRoot().setStyle("-fx-font-family: 'serif'");
+    scene.getRoot().setStyle("-fx-font-family: 'Helvetica'");
     stage.setTitle("Tanner Graphs to Liner Codes");
     stage.setScene(scene);
     stage.show();

@@ -13,12 +13,12 @@
                  maxWidth="-Infinity" min="1" onMouseClicked="#paritySpinnerClickHandler"/>
         <Label layoutX="91.0" layoutY="22.0" text="Source Bits">
             <font>
-                <Font name="Times New Roman Bold" size="14.0"/>
+                <Font name="Helvetica" size="14.0"/>
             </font>
         </Label>
         <Label layoutX="90.0" layoutY="115.0" maxHeight="-Infinity" maxWidth="-Infinity" text="Parity Bits">
             <font>
-                <Font name="Times New Roman Bold" size="14.0"/>
+                <Font name="Helvetica" size="14.0"/>
             </font>
         </Label>
         <Button fx:id="submitButton" layoutX="68.0" layoutY="212.0" maxHeight="-Infinity" maxWidth="-Infinity"

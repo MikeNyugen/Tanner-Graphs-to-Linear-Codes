@@ -1,6 +1,7 @@
 package com.mikenyugen.linearcodes.controllers;
 
 import com.mikenyugen.linearcodes.model.MessageNode;
+import com.mikenyugen.linearcodes.model.ParityNode;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.ToggleButton;
@@ -34,6 +35,8 @@ public class MainController implements Initializable {
   public void paneClickEventHandler(MouseEvent mouseEvent) {
     if (addMessageNode.isSelected()) {
       addMessageNode(mouseEvent);
+    } else if (addParityNode.isSelected()) {
+      addParityNode(mouseEvent);
     }
   }
 
@@ -54,5 +57,21 @@ public class MainController implements Initializable {
     pane.getChildren().add(messageNode);
   }
 
+  /**
+   * Adds a parity node to the canvus.
+   *
+   * @param mouseEvent Javafx mouse event
+   */
+  private void addParityNode(MouseEvent mouseEvent) {
+    ParityNode parityNode = null;
+    try {
+      parityNode = new ParityNode();
+    } catch (IOException e) {
+      throw new RuntimeException(e);
+    }
+    parityNode.setLayoutX(mouseEvent.getX() - 25);
+    parityNode.setLayoutY(mouseEvent.getY() - 25);
+    pane.getChildren().add(parityNode);
+  }
 
 }

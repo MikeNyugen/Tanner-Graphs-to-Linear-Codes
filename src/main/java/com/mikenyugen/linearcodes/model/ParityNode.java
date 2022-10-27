@@ -1,6 +1,7 @@
 package com.mikenyugen.linearcodes.model;
 
 import com.mikenyugen.linearcodes.controllers.MessageNodeController;
+import com.mikenyugen.linearcodes.controllers.ParityNodeController;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
@@ -11,17 +12,17 @@ import java.io.IOException;
 import static jfxtras.labs.util.event.MouseControlUtil.makeDraggable;
 
 /**
- * Responsible for displaying the message node correctly.
+ * Responsible for displaying the parity node correctly.
  * <p>
  * New components must extend from an existing JavaFX component to be displayed.
  */
-public class MessageNode extends AnchorPane {
+public class ParityNode extends AnchorPane {
   @FXML
-  MessageNodeController messageNodeController;
+  ParityNodeController parityNodeController;
 
-  public MessageNode() throws IOException {
+  public ParityNode() throws IOException {
     super();
-    messageNodeSetup();
+    parityNodeSetup();
     makeDraggable(this);
   }
 
@@ -30,16 +31,16 @@ public class MessageNode extends AnchorPane {
    *
    * @throws IOException if the FXML cannot be loaded
    */
-  private void messageNodeSetup() throws IOException {
+  private void parityNodeSetup() throws IOException {
     // Load FXML
     FXMLLoader fxmlLoader = fxmlSetup();
     // Bind FXML to controller
-    messageNodeController = new MessageNodeController();
-    fxmlLoader.setController(messageNodeController);
+    parityNodeController = new ParityNodeController();
+    fxmlLoader.setController(parityNodeController);
   }
 
   /**
-   * Sets up the FXML for the message node.
+   * Sets up the FXML for the parity node.
    *
    * @return a FXML loader object
    * @throws IOException if the FXML cannot be loaded
@@ -47,7 +48,7 @@ public class MessageNode extends AnchorPane {
   private FXMLLoader fxmlSetup() throws IOException {
     try {
       FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource(
-          "/com/mikenyugen/linearcodes/MessageNode.fxml"));
+          "/com/mikenyugen/linearcodes/ParityNode.fxml"));
       Node node = fxmlLoader.load();
       this.getChildren().add(node);
       return fxmlLoader;
@@ -55,7 +56,6 @@ public class MessageNode extends AnchorPane {
       throw new IOException("FXML loader failure");
     }
   }
-
-
-
 }
+
+
