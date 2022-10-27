@@ -3,8 +3,8 @@ package com.mikenyugen.linearcodes.controllers;
 import com.mikenyugen.linearcodes.model.MessageNode;
 import com.mikenyugen.linearcodes.model.ParityNode;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
-import javafx.scene.control.ToggleButton;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.Pane;
 
@@ -12,19 +12,26 @@ import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 
-public class MainController implements Initializable {
-  @FXML
-  MenuController menuController;
-  @FXML
-  ToggleButton addMessageNode;
-  @FXML
-  ToggleButton addParityNode;
+public class MainController implements Initializable, FxmlLoaderRetriever {
+
+  ToolBarController toolBarController;
+
   @FXML
   Pane pane;
 
   @FXML
   @Override
   public void initialize(URL location, ResourceBundle resources) {
+    try {
+      loadControllers();
+    } catch (IOException e) {
+      throw new RuntimeException(e);
+    }
+  }
+
+  private void loadControllers() throws IOException {
+    FXMLLoader toolbarLoader = retrieveLoader("/com/mikenyugen/linearcodes/ToolBar.fxml");
+    toolBarController = toolbarLoader.getController();
   }
 
   /**
@@ -32,10 +39,10 @@ public class MainController implements Initializable {
    *
    * @param mouseEvent Javafx mouse event
    */
-  public void paneClickEventHandler(MouseEvent mouseEvent) {
-    if (addMessageNode.isSelected()) {
+  public void paneClickEventHandler(MouseEvent mouseEvent) throws IOException {
+    if (toolBarController.addMessageNodeIsSelected()) {
       addMessageNode(mouseEvent);
-    } else if (addParityNode.isSelected()) {
+    } else if (toolBarController.addParityNodeIsSelected()) {
       addParityNode(mouseEvent);
     }
   }

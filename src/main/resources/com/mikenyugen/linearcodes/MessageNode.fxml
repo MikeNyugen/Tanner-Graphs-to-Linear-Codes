@@ -8,7 +8,8 @@
       prefWidth="60.0" xmlns="http://javafx.com/javafx" xmlns:fx="http://javafx.com/fxml/1"
       fx:controller="com.mikenyugen.linearcodes.controllers.MessageNodeController"
       onMouseEntered="#mouseEnteredEventHandler"
-      onMouseExited="#mouseExitedEventHandler">
+      onMouseExited="#mouseExitedEventHandler"
+        onMouseClicked="#mouseClickedHandler">
     <children>
         <StackPane fx:id="stack" layoutY="1.0" prefHeight="50.0" prefWidth="49.0">
             <children>

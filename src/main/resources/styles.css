@@ -1,0 +1,19 @@
+
+.nodeSelected{
+    -fx-fill: white;
+    -fx-stroke: SEAGREEN;
+    -fx-stroke-width: 4;
+    -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.3), 10, 0.5, 0.0, 0.0);
+}
+
+.hover{
+    -fx-stroke: BLUE;
+    -fx-stroke-width: 4;
+}
+
+.jfx-snackbar-content{
+    -fx-background-color: WHITE;
+    -fx-font-size: 24pt;
+}
+
+

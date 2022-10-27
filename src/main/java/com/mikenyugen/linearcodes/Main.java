@@ -26,6 +26,7 @@ public class Main extends Application {
     Scene scene = new Scene(fxmlLoader.load(), 1277, 777);
     scene.getRoot().setStyle("-fx-font-family: 'Helvetica'");
     stage.setTitle("Tanner Graphs to Liner Codes");
+    scene.getStylesheets().add("styles.css");
     stage.setScene(scene);
     stage.show();
   }
