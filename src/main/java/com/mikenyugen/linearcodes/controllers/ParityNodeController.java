@@ -1,5 +1,6 @@
 package com.mikenyugen.linearcodes.controllers;
 
+import com.mikenyugen.linearcodes.Main;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
@@ -55,7 +56,6 @@ public class ParityNodeController implements Initializable, FxmlLoaderRetriever 
     toolBarController = toolbarLoader.getController();
   }
 
-
   private void setupStyles() {
     circleLabel.setText("P" + numNodes);
     circleLabel.setStyle("-fx-font-size: 18");
@@ -65,8 +65,12 @@ public class ParityNodeController implements Initializable, FxmlLoaderRetriever 
 
   @FXML
   private void mouseClickedHandler() {
-    if (toolBarController.selectIsSelected()) {
+    if (toolBarController.selectIsSelected() && Main.nodesSelected < 2) {
+      Main.nodesSelected++;
       square.getStyleClass().add("nodeSelected");
+    } else if (toolBarController.removeSelectIsSelected()) {
+      Main.nodesSelected--;
+      square.getStyleClass().clear();
     }
   }
 

@@ -16,6 +16,8 @@ public class ToolBarController implements Initializable {
   @FXML
   ToggleButton selectButton;
   @FXML
+  ToggleButton removeSelection;
+  @FXML
   ToggleButton addMessageNode;
   @FXML
   ToggleButton addParityNode;
@@ -24,6 +26,7 @@ public class ToolBarController implements Initializable {
     put("addMessageNode", false);
     put("addParityNode", false);
     put("select", false);
+    put("removeSelect", false);
   }};
 
   @Override
@@ -40,6 +43,9 @@ public class ToolBarController implements Initializable {
     });
     selectButton.setOnMouseClicked(event -> {
       enforceButtonToggle("select");
+    });
+    removeSelection.setOnMouseClicked(event -> {
+      enforceButtonToggle("removeSelect");
     });
   }
 
@@ -69,4 +75,5 @@ public class ToolBarController implements Initializable {
     return buttons.get("select");
   }
 
+  public boolean removeSelectIsSelected() { return buttons.get("removeSelect"); }
 }

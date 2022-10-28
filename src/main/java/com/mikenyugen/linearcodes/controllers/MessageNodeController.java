@@ -1,5 +1,6 @@
 package com.mikenyugen.linearcodes.controllers;
 
+import com.mikenyugen.linearcodes.Main;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
@@ -53,8 +54,12 @@ public class MessageNodeController implements Initializable, FxmlLoaderRetriever
 
   @FXML
   private void mouseClickedHandler() {
-      if (toolBarController.selectIsSelected()) {
+      if (toolBarController.selectIsSelected() && Main.nodesSelected < 2) {
+        Main.nodesSelected++;
         circle.getStyleClass().add("nodeSelected");
+      } else if (toolBarController.removeSelectIsSelected()) {
+        Main.nodesSelected--;
+        circle.getStyleClass().clear();
       }
   }
 

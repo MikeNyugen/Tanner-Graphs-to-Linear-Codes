@@ -19,6 +19,10 @@ public class Main extends Application {
    * The number of parity bits specified by the user.
    */
   public static int parityBits;
+  /**
+   * The number of nodes that the user has selected.
+   */
+  public static int nodesSelected = 0;
 
   @Override
   public void start(Stage stage) throws IOException {
