@@ -25,13 +25,13 @@ public interface BitNode {
   }
 
   /**
-   * Clears all CSS styles from the node.
-   */
-  void clearStyles();
-
-  /**
    * Methods to handle mouse click events.
    */
   void mouseClickedHandlers();
+
+  /**
+   * Clears all CSS styles from the node.
+   */
+  void clearStyles();
 
 }

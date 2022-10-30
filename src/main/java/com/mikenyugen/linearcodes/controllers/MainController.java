@@ -1,6 +1,7 @@
 package com.mikenyugen.linearcodes.controllers;
 
 import com.mikenyugen.linearcodes.Main;
+import com.mikenyugen.linearcodes.model.BitNode;
 import com.mikenyugen.linearcodes.model.Connection;
 import com.mikenyugen.linearcodes.model.MessageNode;
 import com.mikenyugen.linearcodes.model.ParityNode;
@@ -20,8 +21,6 @@ public class MainController implements Initializable {
   @FXML
   ToggleButton drag;
   @FXML
-  Button addConnection;
-  @FXML
   ToggleButton selectButton;
   @FXML
   ToggleButton removeSelection;
@@ -30,11 +29,18 @@ public class MainController implements Initializable {
   @FXML
   ToggleButton addParityNode;
   @FXML
+  Button addConnection;
+  @FXML
+  ToggleButton removeConnection;
+  @FXML
   Pane pane;
+
+  MessageNodeController messageNodeController;
 
   @FXML
   @Override
   public void initialize(URL location, ResourceBundle resources) {
+
     clickEventHandlers();
   }
 
@@ -81,14 +87,15 @@ public class MainController implements Initializable {
    * @param mouseEvent Javafx mouse event
    */
   private void addMessageNode(MouseEvent mouseEvent) {
+    int mouseOffset = 25;
     MessageNode messageNode = null;
     try {
       messageNode = new MessageNode();
     } catch (IOException e) {
       throw new RuntimeException(e);
     }
-    messageNode.setLayoutX(mouseEvent.getX() - 25);
-    messageNode.setLayoutY(mouseEvent.getY() - 25);
+    messageNode.setLayoutX(mouseEvent.getX() - mouseOffset);
+    messageNode.setLayoutY(mouseEvent.getY() - mouseOffset);
     pane.getChildren().add(messageNode);
   }
 
@@ -98,14 +105,15 @@ public class MainController implements Initializable {
    * @param mouseEvent Javafx mouse event
    */
   private void addParityNode(MouseEvent mouseEvent) {
+    int mouseOffset = 25;
     ParityNode parityNode = null;
     try {
       parityNode = new ParityNode();
     } catch (IOException e) {
       throw new RuntimeException(e);
     }
-    parityNode.setLayoutX(mouseEvent.getX() - 25);
-    parityNode.setLayoutY(mouseEvent.getY() - 25);
+    parityNode.setLayoutX(mouseEvent.getX() - mouseOffset);
+    parityNode.setLayoutY(mouseEvent.getY() - mouseOffset);
     pane.getChildren().add(parityNode);
   }
 
@@ -123,6 +131,7 @@ public class MainController implements Initializable {
 
     connection.setStartEnd(messageNode, parityNode);
     connection.setBindings(messageNode, parityNode);
+    connection.setOnMouseClicked(event -> { removeConnection(connection); });
     pane.getChildren().add(connection);
 
     Main.selectionModel.clear();
@@ -130,5 +139,12 @@ public class MainController implements Initializable {
     parityNode.clearStyles();
     connection.toBack();
   }
+
+  public void removeConnection(Connection connection) {
+    if (removeConnection.isSelected()) {
+      pane.getChildren().remove(connection);
+    }
+  }
+
 
 }
