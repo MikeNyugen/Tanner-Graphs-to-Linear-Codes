@@ -20,7 +20,9 @@ import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 
-public class MainController implements Initializable, FxmlLoaderRetriever {
+public class MainController implements Initializable {
+  @FXML
+  ToggleButton drag;
   @FXML
   Button addConnection;
   @FXML
@@ -37,6 +39,13 @@ public class MainController implements Initializable, FxmlLoaderRetriever {
   @FXML
   @Override
   public void initialize(URL location, ResourceBundle resources) {
+    clickEventHandlers();
+  }
+
+  private void clickEventHandlers() {
+    drag.setOnMouseClicked(event -> {
+      Main.selection = false;
+    });
     selectButton.setOnMouseClicked(event -> {
       Main.selection = true;
       Main.removeSelection = false;

@@ -61,7 +61,6 @@ public class MenuController implements Initializable {
     submitButton.setDisable(true);
     sourceSpinner.setDisable(true);
     paritySpinner.setDisable(true);
-    System.out.println(Main.sourceBits);
   }
 
 }

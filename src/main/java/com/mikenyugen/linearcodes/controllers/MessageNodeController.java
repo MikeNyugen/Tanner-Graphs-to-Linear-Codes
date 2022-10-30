@@ -1,9 +1,7 @@
 package com.mikenyugen.linearcodes.controllers;
 
-import com.mikenyugen.linearcodes.Main;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
-import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.StackPane;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Circle;
@@ -19,24 +17,16 @@ public class MessageNodeController  {
   @FXML
   Label label;
 
-  @FXML
-  private void mouseClickedHandler(MouseEvent mouseEvent) {
-    if (Main.selection && Main.nodesSelected < 2) {
-      Main.nodesSelected++;
-      circle.getStyleClass().add("nodeSelected");
-    } else if (Main.removeSelection) {
-      Main.nodesSelected--;
-      circle.getStyleClass().clear();
-    }
+  public void setupStyles(int numberOfNodes) {
+    label.setText("M" + numberOfNodes);
+    label.setStyle("-fx-font-size: 18");
   }
 
-  @FXML
-  private void mouseEnteredEventHandler() {
+  public void mouseEnteredEventHandler() {
     circle.setFill(Color.DARKGREY);
   }
 
-  @FXML
-  private void mouseExitedEventHandler() {
+  public void mouseExitedEventHandler() {
     circle.setFill(Color.WHITE);
   }
 

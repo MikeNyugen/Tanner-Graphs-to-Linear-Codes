@@ -1,9 +1,8 @@
 package com.mikenyugen.linearcodes.model;
 
 import com.mikenyugen.linearcodes.Main;
-import com.mikenyugen.linearcodes.controllers.MessageNodeController;
+import com.mikenyugen.linearcodes.controllers.BitNode;
 import com.mikenyugen.linearcodes.controllers.ParityNodeController;
-import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.layout.AnchorPane;
 
@@ -16,9 +15,9 @@ import static jfxtras.labs.util.event.MouseControlUtil.makeDraggable;
  * <p>
  * New components must extend from an existing JavaFX component to be displayed.
  */
-public class ParityNode extends AnchorPane {
+public class ParityNode extends AnchorPane implements BitNode {
   static int numberOfNodes = -1;
-  ParityNodeController controller;
+  ParityNodeController controller = new ParityNodeController();
 
   /**
    * Loads FXML on initialisation and makes the node draggable.
@@ -26,16 +25,16 @@ public class ParityNode extends AnchorPane {
    * @throws IOException if the FXML cannot be loaded
    */
   public ParityNode() throws IOException {
-    FXMLLoader loader = new FXMLLoader(getClass().getResource(
-        "/com/mikenyugen/linearcodes/ParityNode.fxml"));
-    controller = new ParityNodeController();
-    loader.setController(controller);
-    Node n = loader.load();
     numberOfNodes++;
-    controller.setupStyles();
+    Node node = retrieveLoader("/com/mikenyugen/linearcodes/ParityNode.fxml", controller);
+    this.getChildren().add(node);
+    controller.setupStyles(numberOfNodes);
     makeDraggable(this); // Makes the node draggable, method imported from JFxtras.labs
-    this.getChildren().add(n);
+    mouseClickedHandlers();
+  }
 
+  @Override
+  public void mouseClickedHandlers() {
     this.setOnMouseClicked(event -> {
       if (Main.selection) {
         Main.selectionModel.add(this);
@@ -55,6 +54,7 @@ public class ParityNode extends AnchorPane {
     });
   }
 
+  @Override
   public void clearStyles() {
     controller.getSquare().getStyleClass().clear();
   }

@@ -1,13 +1,10 @@
 package com.mikenyugen.linearcodes.model;
 
 import com.mikenyugen.linearcodes.Main;
+import com.mikenyugen.linearcodes.controllers.BitNode;
 import com.mikenyugen.linearcodes.controllers.MessageNodeController;
-import com.mikenyugen.linearcodes.controllers.ToolBarController;
-import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
-import javafx.scene.Parent;
 import javafx.scene.layout.AnchorPane;
-import javafx.scene.paint.Color;
 
 import java.io.IOException;
 
@@ -18,9 +15,9 @@ import static jfxtras.labs.util.event.MouseControlUtil.makeDraggable;
  * <p>
  * New components must extend from an existing JavaFX component to be displayed.
  */
-public class MessageNode extends AnchorPane  {
+public class MessageNode extends AnchorPane implements BitNode {
   static int numberOfNodes = -1;
-  MessageNodeController controller;
+  MessageNodeController controller = new MessageNodeController();
 
   /**
    * Loads FXML on initialisation and makes the node draggable.
@@ -28,19 +25,16 @@ public class MessageNode extends AnchorPane  {
    * @throws IOException if the FXML cannot be loaded
    */
   public MessageNode() throws IOException {
-
-    FXMLLoader loader = new FXMLLoader(getClass().getResource(
-        "/com/mikenyugen/linearcodes/MessageNode.fxml"));
-    controller = new MessageNodeController();
-    loader.setController(controller);
-    Node n = loader.load();
     numberOfNodes++;
-    controller.getLabel().setText("M" + numberOfNodes);
-    controller.getLabel().setStyle("-fx-font-size: 18");
-    setHoverEffects();
+    Node node = retrieveLoader("/com/mikenyugen/linearcodes/MessageNode.fxml", controller);
+    this.getChildren().add(node);
+    controller.setupStyles(numberOfNodes);
     makeDraggable(this); // Makes the node draggable, method imported from JFxtras.labs
-    this.getChildren().add(n);
+    mouseClickedHandlers();
+  }
 
+  @Override
+  public void mouseClickedHandlers() {
     this.setOnMouseClicked(event -> {
       if (Main.selection) {
         Main.selectionModel.add(this);
@@ -50,17 +44,17 @@ public class MessageNode extends AnchorPane  {
         controller.getCircle().getStyleClass().clear();
       }
     });
-  }
 
-  private void setHoverEffects() {
     this.setOnMouseEntered(event -> {
-      controller.getCircle().setFill(Color.LIGHTGREY);
+      controller.mouseEnteredEventHandler();
     });
+
     this.setOnMouseExited(event -> {
-      controller.getCircle().setFill(Color.WHITE);
+      controller.mouseExitedEventHandler();
     });
   }
 
+  @Override
   public void clearStyles() {
     controller.getCircle().getStyleClass().clear();
   }
