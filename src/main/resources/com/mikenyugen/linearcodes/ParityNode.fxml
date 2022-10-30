@@ -7,10 +7,7 @@
 <?import javafx.scene.shape.Line?>
 <?import javafx.scene.shape.Rectangle?>
 <Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="151.0"
-      prefWidth="64.0" xmlns="http://javafx.com/javafx/" xmlns:fx="http://javafx.com/fxml/1"
-      fx:controller="com.mikenyugen.linearcodes.controllers.ParityNodeController"
-      onMouseEntered="#mouseEnteredEventHandler" onMouseExited="#mouseExitedEventHandler"
-      onMouseClicked="#mouseClickedHandler">
+      prefWidth="64.0" xmlns="http://javafx.com/javafx/" xmlns:fx="http://javafx.com/fxml/1" >
     <children>
         <Line fx:id="line" endX="99.99998474121094" endY="2.4167098999023438" layoutX="-68.0" layoutY="87.0"
               startX="99.99998474121094" startY="-25.000003814697266" strokeWidth="4.0"/>

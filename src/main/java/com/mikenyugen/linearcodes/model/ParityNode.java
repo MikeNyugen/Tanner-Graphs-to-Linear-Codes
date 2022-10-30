@@ -1,5 +1,10 @@
 package com.mikenyugen.linearcodes.model;
 
+import com.mikenyugen.linearcodes.Main;
+import com.mikenyugen.linearcodes.controllers.MessageNodeController;
+import com.mikenyugen.linearcodes.controllers.ParityNodeController;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Node;
 import javafx.scene.layout.AnchorPane;
 
 import java.io.IOException;
@@ -10,10 +15,10 @@ import static jfxtras.labs.util.event.MouseControlUtil.makeDraggable;
  * JavaFX component representing a parity node.
  * <p>
  * New components must extend from an existing JavaFX component to be displayed.
- * <p>
- * The 'FxmlComponent' interface defines a default method to load the FXML file.
  */
-public class ParityNode extends AnchorPane implements FxmlComponent {
+public class ParityNode extends AnchorPane {
+  static int numberOfNodes = -1;
+  ParityNodeController controller;
 
   /**
    * Loads FXML on initialisation and makes the node draggable.
@@ -21,8 +26,37 @@ public class ParityNode extends AnchorPane implements FxmlComponent {
    * @throws IOException if the FXML cannot be loaded
    */
   public ParityNode() throws IOException {
-    fxmlSetup(this, "/com/mikenyugen/linearcodes/ParityNode.fxml");
-    makeDraggable(this);
+    FXMLLoader loader = new FXMLLoader(getClass().getResource(
+        "/com/mikenyugen/linearcodes/ParityNode.fxml"));
+    controller = new ParityNodeController();
+    loader.setController(controller);
+    Node n = loader.load();
+    numberOfNodes++;
+    controller.setupStyles();
+    makeDraggable(this); // Makes the node draggable, method imported from JFxtras.labs
+    this.getChildren().add(n);
+
+    this.setOnMouseClicked(event -> {
+      if (Main.selection) {
+        Main.selectionModel.add(this);
+        controller.getSquare().getStyleClass().add("nodeSelected");
+      } else if (Main.removeSelection) {
+        Main.selectionModel.remove(this);
+        controller.getSquare().getStyleClass().clear();
+      }
+    });
+
+    this.setOnMouseEntered(event -> {
+      controller.mouseEnteredEventHandler();
+    });
+
+    this.setOnMouseExited(event -> {
+      controller.mouseExitedEventHandler();
+    });
+  }
+
+  public void clearStyles() {
+    controller.getSquare().getStyleClass().clear();
   }
 
 }

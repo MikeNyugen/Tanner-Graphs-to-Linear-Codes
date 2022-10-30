@@ -2,10 +2,12 @@ package com.mikenyugen.linearcodes;
 
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
+import javafx.scene.Node;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
 
 import java.io.IOException;
+import java.util.ArrayList;
 
 /**
  * Main class responsible for starting the application.
@@ -19,10 +21,20 @@ public class Main extends Application {
    * The number of parity bits specified by the user.
    */
   public static int parityBits;
+
+  public static int messageNodesPresent = -1;
+
+  public static int parityNodesPresent = -1;
   /**
    * The number of nodes that the user has selected.
    */
   public static int nodesSelected = 0;
+
+  public static boolean selection = false;
+
+  public static boolean removeSelection = false;
+
+  public static ArrayList<Node> selectionModel = new ArrayList<>();
 
   @Override
   public void start(Stage stage) throws IOException {
@@ -34,6 +46,8 @@ public class Main extends Application {
     stage.setScene(scene);
     stage.show();
   }
+
+
 
   public static void main(String[] args) {
     launch();
