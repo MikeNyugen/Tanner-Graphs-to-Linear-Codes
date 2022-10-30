@@ -21,10 +21,6 @@ public class Main extends Application {
    * The number of parity bits specified by the user.
    */
   public static int parityBits;
-
-  public static int messageNodesPresent = -1;
-
-  public static int parityNodesPresent = -1;
   /**
    * The number of nodes that the user has selected.
    */
@@ -36,6 +32,10 @@ public class Main extends Application {
 
   public static ArrayList<Node> selectionModel = new ArrayList<>();
 
+  public static void main(String[] args) {
+    launch();
+  }
+
   @Override
   public void start(Stage stage) throws IOException {
     FXMLLoader fxmlLoader = new FXMLLoader(Main.class.getResource("MainScene.fxml"));
@@ -45,11 +45,5 @@ public class Main extends Application {
     scene.getStylesheets().add("styles.css");
     stage.setScene(scene);
     stage.show();
-  }
-
-
-
-  public static void main(String[] args) {
-    launch();
   }
 }

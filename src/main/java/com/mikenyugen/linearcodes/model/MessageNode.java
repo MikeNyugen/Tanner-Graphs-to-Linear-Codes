@@ -1,7 +1,6 @@
 package com.mikenyugen.linearcodes.model;
 
 import com.mikenyugen.linearcodes.Main;
-import com.mikenyugen.linearcodes.controllers.BitNode;
 import com.mikenyugen.linearcodes.controllers.MessageNodeController;
 import javafx.scene.Node;
 import javafx.scene.layout.AnchorPane;

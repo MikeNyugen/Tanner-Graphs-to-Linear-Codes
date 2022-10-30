@@ -1,12 +1,11 @@
-package com.mikenyugen.linearcodes.controllers;
+package com.mikenyugen.linearcodes.model;
 
+import com.mikenyugen.linearcodes.controllers.MessageNodeController;
+import com.mikenyugen.linearcodes.controllers.ParityNodeController;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
-import javafx.scene.Parent;
 
 import java.io.IOException;
-
-import static jfxtras.labs.util.event.MouseControlUtil.makeDraggable;
 
 /**
  * Defines a method to set up a bit node including loading the FXML file and attaching a controller.

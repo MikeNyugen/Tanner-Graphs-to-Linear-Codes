@@ -4,13 +4,9 @@ import com.mikenyugen.linearcodes.Main;
 import com.mikenyugen.linearcodes.model.Connection;
 import com.mikenyugen.linearcodes.model.MessageNode;
 import com.mikenyugen.linearcodes.model.ParityNode;
-import javafx.beans.binding.Bindings;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
-import javafx.geometry.Bounds;
 import javafx.scene.Node;
-import javafx.scene.Parent;
 import javafx.scene.control.Button;
 import javafx.scene.control.ToggleButton;
 import javafx.scene.input.MouseEvent;
@@ -55,7 +51,7 @@ public class MainController implements Initializable {
       Main.removeSelection = true;
     });
     addConnection.setOnMouseClicked(event -> {
-      connect();
+      connectNodes();
     });
     pane.setOnMouseClicked(mouseEvent -> {
       if (addMessageNode.isSelected()) {
@@ -113,61 +109,26 @@ public class MainController implements Initializable {
     pane.getChildren().add(parityNode);
   }
 
-  public void connect() {
-    int messageIndex;
-    int parityIndex;
+  /**
+   * Connects two nodes that have been selected by the user.
+   */
+  public void connectNodes() {
+    Connection connection = new Connection();
+    boolean messageNodeSelectedFirst = connection.determineNodeOrder();
+    int messageIndex = messageNodeSelectedFirst ? 0 : 1;
+    int parityIndex = !messageNodeSelectedFirst ? 0 : 1;
 
-    Node firstNode = Main.selectionModel.get(0);
-    Node secondNode = Main.selectionModel.get(1);
-    Connection line = new Connection();
-    line.setStrokeWidth(4);
+    MessageNode messageNode = (MessageNode) Main.selectionModel.get(messageIndex);
+    ParityNode parityNode = (ParityNode) Main.selectionModel.get(parityIndex);
 
-    if (firstNode instanceof MessageNode &&
-        secondNode instanceof ParityNode) {
-      messageIndex = 0;
-      parityIndex = 1;
-    } else {
-      messageIndex = 1;
-      parityIndex = 0;
-    }
-
-    MessageNode m1 = (MessageNode) Main.selectionModel.get(messageIndex);
-    ParityNode p1 = (ParityNode) Main.selectionModel.get(parityIndex);
-
-    line.setStartX(m1.getLayoutX());
-    line.setStartY(m1.getLayoutY());
-    line.setEndX(p1.getLayoutX());
-    line.setEndY(p1.getLayoutY());
-
-    // Set bindings
-    line.startXProperty().bind(Bindings.createDoubleBinding(() -> {
-      Bounds b = m1.getBoundsInParent();
-      return b.getMinX() + b.getWidth() / 2;
-    }, m1.boundsInParentProperty()));
-
-    line.startYProperty().bind(Bindings.createDoubleBinding(() -> {
-      Bounds b = m1.getBoundsInParent();
-      return b.getMinY() + b.getHeight() / 2;
-    }, m1.boundsInParentProperty()));
-
-    line.endXProperty().bind(Bindings.createDoubleBinding(() -> {
-      Bounds b = p1.getBoundsInParent();
-      return b.getMinX() + b.getWidth() / 2;
-    }, p1.boundsInParentProperty()));
-
-    line.endYProperty().bind(Bindings.createDoubleBinding(() -> {
-      Bounds b = p1.getBoundsInParent();
-      return b.getMinY() - 50 + b.getHeight() / 2;
-    }, p1.boundsInParentProperty()));
+    connection.setStartEnd(messageNode, parityNode);
+    connection.setBindings(messageNode, parityNode);
+    pane.getChildren().add(connection);
 
     Main.selectionModel.clear();
-
-    m1.clearStyles();
-    p1.clearStyles();
-
-    pane.getChildren().add(line);
-
-    line.toBack();
+    messageNode.clearStyles();
+    parityNode.clearStyles();
+    connection.toBack();
   }
 
 }
