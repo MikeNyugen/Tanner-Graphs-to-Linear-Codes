@@ -1,6 +1,7 @@
 package com.mikenyugen.linearcodes.model;
 
 import com.mikenyugen.linearcodes.Main;
+import com.mikenyugen.linearcodes.controllers.MainController;
 import javafx.beans.binding.Bindings;
 import javafx.geometry.Bounds;
 import javafx.scene.Node;
@@ -11,6 +12,8 @@ import javafx.scene.shape.Line;
  * Represents a connection between two nodes.
  */
 public class Connection extends Line {
+  MainController mainController = new MainController();
+
   public Connection() {
     super();
     setStrokeWidth(4);
@@ -23,8 +26,8 @@ public class Connection extends Line {
    * @return true if the first node selected is a message node and false otherwise.
    */
   public boolean determineNodeOrder() {
-    Node firstNode = Main.selectionModel.get(0);
-    Node secondNode = Main.selectionModel.get(1);
+    Node firstNode = mainController.getNodesSelected().get(0);
+    Node secondNode = mainController.getNodesSelected().get(1);
     return firstNode instanceof MessageNode &&
         secondNode instanceof ParityNode;
   }

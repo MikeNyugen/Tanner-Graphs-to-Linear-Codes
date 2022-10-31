@@ -22,7 +22,7 @@ public class Matrix {
    * @param columns     the number of columns of the matrix
    * @return a new parity matrix
    */
-  public static DoubleMatrix createParityMatrix(ArrayList<Point> connections,
+  public DoubleMatrix createParityMatrix(ArrayList<Point> connections,
                                                 int rows, int columns) {
     // Initialise matrix with zero values
     DoubleMatrix parityMatrix = new DoubleMatrix(rows, columns);
@@ -122,5 +122,23 @@ public class Matrix {
       }
     }
     return output;
+  }
+
+  /**
+   * Performs the entire conversion process from bipartite graph to a list of codewords.
+   *
+   * @param connections a list of connections between nodes
+   * @param sourceBits the number of source bits
+   * @param parityBits the number of parity bits
+   * @param messageLength the length of the messages
+   * @return a matrix containing the code words
+   */
+  public DoubleMatrix parityCheckToCodeWords(ArrayList<Point> connections, int sourceBits,
+                          int parityBits, int messageLength) {
+    DoubleMatrix parityMatrix = createParityMatrix(connections, parityBits,
+        sourceBits - parityBits);
+    DoubleMatrix generatorMatrix = createGeneratorMatrix(parityMatrix, sourceBits, parityBits);
+    DoubleMatrix messages = generateMessages(messageLength);
+    return generateCodewords(generatorMatrix, messages);
   }
 }

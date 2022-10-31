@@ -1,19 +1,15 @@
 package com.mikenyugen.linearcodes.controllers;
 
-import com.mikenyugen.linearcodes.Main;
 import javafx.fxml.FXML;
-import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.Spinner;
 
-import java.net.URL;
 import java.util.Objects;
-import java.util.ResourceBundle;
 
 /**
  * Controller responsible for side menu interactions.
  */
-public class MenuController implements Initializable {
+public class MenuController {
   @FXML
   private Spinner<Integer> sourceSpinner;
   @FXML
@@ -21,8 +17,9 @@ public class MenuController implements Initializable {
   @FXML
   private Button submitButton;
 
-  @Override
-  public void initialize(URL location, ResourceBundle resources) {}
+  private static int sourceBits;
+
+  private static int parityBits;
 
   /**
    * Decrements the value of the parity spinner if the value of the source spinner is the same.
@@ -50,17 +47,23 @@ public class MenuController implements Initializable {
 
   /**
    * Handles the submit button events.
-   *
-   * Values stored in the spinners will be copied
-   * to the global variables stored in Main.
    */
   public void submitButtonClickHandler() {
-    Main.sourceBits = sourceSpinner.getValue();
-    Main.parityBits = paritySpinner.getValue();
+    sourceBits = sourceSpinner.getValue();
+    parityBits = paritySpinner.getValue();
 
     submitButton.setDisable(true);
     sourceSpinner.setDisable(true);
     paritySpinner.setDisable(true);
   }
+
+  public int getSourceBits() {
+    return sourceBits;
+  }
+
+  public int getParityBits() {
+    return parityBits;
+  }
+
 
 }

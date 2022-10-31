@@ -1,11 +1,12 @@
 package com.mikenyugen.linearcodes.model;
 
-import com.mikenyugen.linearcodes.Main;
+import com.mikenyugen.linearcodes.controllers.MainController;
 import com.mikenyugen.linearcodes.controllers.MessageNodeController;
 import javafx.scene.Node;
 import javafx.scene.layout.AnchorPane;
 
 import java.io.IOException;
+import java.util.ArrayList;
 
 import static jfxtras.labs.util.event.MouseControlUtil.makeDraggable;
 
@@ -15,8 +16,11 @@ import static jfxtras.labs.util.event.MouseControlUtil.makeDraggable;
  * New components must extend from an existing JavaFX component to be displayed.
  */
 public class MessageNode extends AnchorPane implements BitNode {
+  int id;
   static int numberOfNodes = -1;
-  MessageNodeController controller = new MessageNodeController();
+  ArrayList<Integer> connections = new ArrayList<>();
+  MessageNodeController messageNodeController = new MessageNodeController();
+  MainController mainController = new MainController();
 
   /**
    * Loads FXML on initialisation and makes the node draggable.
@@ -25,9 +29,10 @@ public class MessageNode extends AnchorPane implements BitNode {
    */
   public MessageNode() throws IOException {
     numberOfNodes++;
-    Node node = retrieveLoader("/com/mikenyugen/linearcodes/MessageNode.fxml", controller);
+    id = numberOfNodes;
+    Node node = retrieveLoader("/com/mikenyugen/linearcodes/MessageNode.fxml", messageNodeController);
     this.getChildren().add(node);
-    controller.setupStyles(numberOfNodes);
+    messageNodeController.setupStyles(numberOfNodes);
     makeDraggable(this); // Makes the node draggable, method imported from JFxtras.labs
     mouseClickedHandlers();
   }
@@ -35,27 +40,35 @@ public class MessageNode extends AnchorPane implements BitNode {
   @Override
   public void mouseClickedHandlers() {
     this.setOnMouseClicked(event -> {
-      if (Main.selection) {
-        Main.selectionModel.add(this);
-        controller.getCircle().getStyleClass().add("nodeSelected");
-      } else if (Main.removeSelection) {
-        Main.selectionModel.remove(this);
-        controller.getCircle().getStyleClass().clear();
+      if (mainController.selectButtonIsSelected()) {
+        mainController.getNodesSelected().add(this);
+        messageNodeController.getCircle().getStyleClass().add("nodeSelected");
+      } else if (mainController.removeSelectionIsSelected()) {
+        mainController.getNodesSelected().remove(this);
+        messageNodeController.getCircle().getStyleClass().clear();
       }
     });
 
     this.setOnMouseEntered(event -> {
-      controller.mouseEnteredEventHandler();
+      messageNodeController.mouseEnteredEventHandler();
     });
 
     this.setOnMouseExited(event -> {
-      controller.mouseExitedEventHandler();
+      messageNodeController.mouseExitedEventHandler();
     });
+  }
+
+  public int getNodeId() {
+    return id;
+  }
+
+  public ArrayList<Integer> getConnections() {
+    return connections;
   }
 
   @Override
   public void clearStyles() {
-    controller.getCircle().getStyleClass().clear();
+    messageNodeController.getCircle().getStyleClass().clear();
   }
 
 }
