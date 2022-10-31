@@ -50,6 +50,7 @@ javafx {
 dependencies {
     implementation group: 'org.jfxtras', name: 'jfxtras-labs', version: '9.0-r1'
     implementation group: 'org.jfxtras', name: 'jfxtras-controls', version: '17-r1'
+    implementation group: 'org.jblas', name: 'jblas', version: '1.2.5'
     testImplementation("org.junit.jupiter:junit-jupiter-api:${junitVersion}")
     testRuntimeOnly("org.junit.jupiter:junit-jupiter-engine:${junitVersion}")
 }

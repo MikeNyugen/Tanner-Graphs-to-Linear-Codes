@@ -35,12 +35,9 @@ public class MainController implements Initializable {
   @FXML
   Pane pane;
 
-  MessageNodeController messageNodeController;
-
   @FXML
   @Override
   public void initialize(URL location, ResourceBundle resources) {
-
     clickEventHandlers();
   }
 

@@ -3,6 +3,7 @@ module com.mikenyugen.linearcodes {
   requires javafx.fxml;
   requires java.desktop;
   requires jfxtras.labs;
+  requires jblas;
 
 
   opens com.mikenyugen.linearcodes to javafx.fxml;
