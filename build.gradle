@@ -27,7 +27,7 @@ repositories {
 }
 
 ext {
-    junitVersion = '5.8.2'
+    junitVersion = '5.9.0'
 }
 
 sourceCompatibility = '11'
@@ -51,6 +51,9 @@ dependencies {
     implementation group: 'org.jfxtras', name: 'jfxtras-labs', version: '9.0-r1'
     implementation group: 'org.jfxtras', name: 'jfxtras-controls', version: '17-r1'
     implementation group: 'org.jblas', name: 'jblas', version: '1.2.5'
+    testImplementation group: 'org.testfx', name: 'testfx-core', version: '4.0.16-alpha'
+    testImplementation group: 'org.testfx', name: 'testfx-junit', version: '4.0.15-alpha'
+
     testImplementation("org.junit.jupiter:junit-jupiter-api:${junitVersion}")
     testRuntimeOnly("org.junit.jupiter:junit-jupiter-engine:${junitVersion}")
 }
@@ -58,6 +61,7 @@ dependencies {
 test {
     useJUnitPlatform()
 }
+
 
 jlink {
     imageZip = project.file("${buildDir}/distributions/app-${javafx.platform.classifier}.zip")

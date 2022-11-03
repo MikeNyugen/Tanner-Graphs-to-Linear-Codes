@@ -2,11 +2,14 @@ package com.mikenyugen.linearcodes.model;
 
 import javafx.beans.property.SimpleStringProperty;
 
-public class Code {
+/**
+ * Represents a table row in a JavaFX table view.
+ */
+public class TableRow {
   SimpleStringProperty message = new SimpleStringProperty("");
   SimpleStringProperty codeWord = new SimpleStringProperty("");
 
-  public Code(String message, String codeWord){
+  public TableRow(String message, String codeWord){
     setMessage(message);
     setCodeWord(codeWord);
   }

@@ -28,13 +28,13 @@
                                 <fx:include source="Menu.fxml" />
                             </content>
                         </TitledPane>
-                        <TitledPane fx:id="parityCheckMatrix" text="Parity-Check Matrix">
+                        <TitledPane fx:id="matrixPane" text="Parity-Check Matrix">
                             <content>
                                 <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
                                     <children>
                                         <TextFlow layoutX="23.0" layoutY="16.0" prefHeight="693.0" prefWidth="247.0" textAlignment="CENTER" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                                             <children>
-                                                <Text fx:id="text" strokeType="OUTSIDE" strokeWidth="0.0" textAlignment="CENTER">
+                                                <Text fx:id="parityCheckMatrix" strokeType="OUTSIDE" strokeWidth="0.0" textAlignment="CENTER">
                                                     <font>
                                                         <Font size="48.0" />
                                                     </font>

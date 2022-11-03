@@ -23,7 +23,7 @@ public class Matrix {
    * @return a new parity matrix
    */
   public DoubleMatrix createParityMatrix(ArrayList<Point> connections,
-                                                int rows, int columns) {
+                                         int rows, int columns) {
     // Initialise matrix with zero values
     DoubleMatrix parityMatrix = new DoubleMatrix(rows, columns);
     // Traverse array of edges
@@ -127,18 +127,29 @@ public class Matrix {
   /**
    * Performs the entire conversion process from bipartite graph to a list of codewords.
    *
-   * @param connections a list of connections between nodes
-   * @param sourceBits the number of source bits
-   * @param parityBits the number of parity bits
+   * @param connections   a list of connections between nodes
+   * @param sourceBits    the number of source bits
+   * @param parityBits    the number of parity bits
    * @param messageLength the length of the messages
    * @return a matrix containing the code words
    */
   public DoubleMatrix parityCheckToCodeWords(ArrayList<Point> connections, int sourceBits,
-                          int parityBits, int messageLength) {
+                                             int parityBits, int messageLength) {
     DoubleMatrix parityMatrix = createParityMatrix(connections, parityBits,
         sourceBits - parityBits);
     DoubleMatrix generatorMatrix = createGeneratorMatrix(parityMatrix, sourceBits, parityBits);
     DoubleMatrix messages = generateMessages(messageLength);
     return generateCodewords(generatorMatrix, messages);
+  }
+
+  /**
+   * Creates a parity matrix for display in the text flow.
+   *
+   * @param parityMatrix the parity matrix to be displayed.
+   * @param parityBits   the number of parity bits
+   * @return the parityBits matrix
+   */
+  public DoubleMatrix createDisplayParityMatrix(DoubleMatrix parityMatrix, int parityBits) {
+    return DoubleMatrix.concatHorizontally(parityMatrix, DoubleMatrix.eye(parityBits));
   }
 }

@@ -1,5 +1,6 @@
 package com.mikenyugen.linearcodes.controllers;
 
+import com.mikenyugen.linearcodes.model.TableRow;
 import com.mikenyugen.linearcodes.model.*;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -11,6 +12,8 @@ import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.Pane;
+import javafx.scene.text.Font;
+import javafx.scene.text.Text;
 import org.jblas.DoubleMatrix;
 
 import java.awt.*;
@@ -50,20 +53,26 @@ public class MainController implements Initializable {
   @FXML
   Button run;
   @FXML
-  TableColumn<Code, String> messageColumn;
+  TableColumn<TableRow, String> messageColumn;
   @FXML
-  TableColumn<Code, String> codewordColumn;
+  TableColumn<TableRow, String> codewordColumn;
   @FXML
-  TableView<Code> tableView;
+  TableView<TableRow> tableView;
+  @FXML
+  TitledPane matrixPane;
+  @FXML
+  TitledPane codeWordsPane;
+  @FXML
+  Text parityCheckMatrix;
 
   @FXML
   @Override
   public void initialize(URL location, ResourceBundle resources) {
     accordion.setExpandedPane(configure);
-    clickEventHandlers();
+    mouseClickEventHandlers();
   }
 
-  private void clickEventHandlers() {
+  private void mouseClickEventHandlers() {
     drag.setOnMouseClicked(event -> {
       selectButtonIsSelected = false;
       removeSelectionIsSelected = false;
@@ -88,35 +97,69 @@ public class MainController implements Initializable {
     });
 
     run.setOnMouseClicked(event -> {
-      Matrix matrix = new Matrix();
-      adjacencyMatrix.clear();
-
-      for (MessageNode messageNode : messageNodeList) {
-        for (int i = 0; i < messageNode.getConnections().size(); i++) {
-          adjacencyMatrix.add(new Point(messageNode.getConnections().get(i), messageNode.getNodeId()));
-        }
-      }
-
-      // populate tableview
       int sourceBits = menuController.getSourceBits();
       int parityBits = menuController.getParityBits();
-      DoubleMatrix codeWords = matrix.parityCheckToCodeWords(adjacencyMatrix, sourceBits, parityBits,
-          sourceBits - parityBits);
-      DoubleMatrix messages = matrix.generateMessages(sourceBits - parityBits);
-      messageColumn.setCellValueFactory(new PropertyValueFactory<>("message"));
-      codewordColumn.setCellValueFactory(new PropertyValueFactory<>("codeWord"));
-      ObservableList<Code> observableList = FXCollections.observableArrayList();
-
+      Matrix matrix = new Matrix();
       DisplayTable displayTable = new DisplayTable();
 
-      displayTable.populateMessages(messages);
-      displayTable.populateCodeWords(codeWords);
+      generateAdjacencyMatrix();
 
-      for (int i = 0; i < displayTable.getMessageList().size(); i++) {
-        observableList.add(new Code(displayTable.getMessageList().get(i), displayTable.getCodeWordList().get(i)));
-      }
-      tableView.getItems().setAll(observableList);
+      DoubleMatrix messages = matrix.generateMessages(sourceBits - parityBits);
+      DoubleMatrix codeWords = matrix.parityCheckToCodeWords(adjacencyMatrix, sourceBits, parityBits,
+          sourceBits - parityBits);
+
+      populateTableView(displayTable, messages, codeWords);
+
+      displayParityMatrix(sourceBits, parityBits);
+
+      setPaneStyles();
     });
+  }
+
+  private void generateAdjacencyMatrix() {
+    adjacencyMatrix.clear();
+    for (MessageNode messageNode : messageNodeList) {
+      for (int i = 0; i < messageNode.getConnections().size(); i++) {
+        adjacencyMatrix.add(new Point(messageNode.getConnections().get(i), messageNode.getNodeId()));
+      }
+    }
+  }
+
+  private void populateTableView(DisplayTable displayTable, DoubleMatrix messages, DoubleMatrix codeWords) {
+    messageColumn.setCellValueFactory(new PropertyValueFactory<>("message"));
+    codewordColumn.setCellValueFactory(new PropertyValueFactory<>("codeWord"));
+    ObservableList<TableRow> observableList = FXCollections.observableArrayList();
+    displayTable.populateMessages(messages);
+    displayTable.populateCodeWords(codeWords);
+    for (int i = 0; i < displayTable.getMessageList().size(); i++) {
+      observableList.add(new TableRow(displayTable.getMessageList().get(i), displayTable.getCodeWordList().get(i)));
+    }
+    tableView.getItems().setAll(observableList);
+  }
+
+  private void displayParityMatrix(int sourceBits, int parityBits) {
+    Matrix matrix = new Matrix();
+    DoubleMatrix parityMatrix = matrix.createDisplayParityMatrix(matrix.createParityMatrix(
+        adjacencyMatrix, parityBits, sourceBits - parityBits), parityBits);
+
+    String row = "";
+    for (int i = 0; i < parityMatrix.rows; i++) {
+      row += "\n";
+      parityCheckMatrix.setText(row);
+      for (int j = 0; j < parityMatrix.columns; j++) {
+        int number = (int) parityMatrix.get(i, j);
+        row += String.valueOf(number);
+        parityCheckMatrix.setText(row);
+      }
+    }
+  }
+
+  private void setPaneStyles() {
+    matrixPane.setText("Parity-Check Matrix (ready to view)");
+    matrixPane.setStyle("-fx-text-fill: GREEN");
+    parityCheckMatrix.setFont(Font.font("Helvetica", 48));
+    codeWordsPane.setText("Code Words (ready to view)");
+    codeWordsPane.setStyle("-fx-text-fill: GREEN");
   }
 
   /**
