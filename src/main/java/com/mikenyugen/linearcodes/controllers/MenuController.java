@@ -24,6 +24,7 @@ public class MenuController {
   /**
    * Decrements the value of the parity spinner if the value of the source spinner is the same.
    *
+   * <p>
    * The number of parity nodes cannot be greater than the number of source nodes.
    */
   public void sourceSpinnerClickHandler() {
@@ -36,6 +37,7 @@ public class MenuController {
   /**
    * Increments the value of the source spinner if the value of the parity spinner is the same.
    *
+   * <p>
    * The number of parity nodes cannot be greater than the number of source nodes.
    */
   public void paritySpinnerClickHandler() {

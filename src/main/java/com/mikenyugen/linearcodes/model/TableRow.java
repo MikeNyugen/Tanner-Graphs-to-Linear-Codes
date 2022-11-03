@@ -9,23 +9,33 @@ public class TableRow {
   SimpleStringProperty message = new SimpleStringProperty("");
   SimpleStringProperty codeWord = new SimpleStringProperty("");
 
-  public TableRow(String message, String codeWord){
+  public TableRow(String message, String codeWord) {
     setMessage(message);
     setCodeWord(codeWord);
   }
 
-  public String getMessage() {return message.get();}
-
-  public SimpleStringProperty messageProperty() {return message;}
+  public String getMessage() {
+    return message.get();
+  }
 
   public void setMessage(String message) {
     this.message.set(message);
   }
 
-  public String getCodeWord() {return codeWord.get();}
+  public SimpleStringProperty messageProperty() {
+    return message;
+  }
 
-  public SimpleStringProperty codeWordProperty() {return codeWord;}
+  public String getCodeWord() {
+    return codeWord.get();
+  }
 
-  public void setCodeWord(String codeWord) {this.codeWord.set(codeWord);}
+  public void setCodeWord(String codeWord) {
+    this.codeWord.set(codeWord);
+  }
+
+  public SimpleStringProperty codeWordProperty() {
+    return codeWord;
+  }
 }
 

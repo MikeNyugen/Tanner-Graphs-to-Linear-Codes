@@ -28,8 +28,8 @@ public class Connection extends Line {
   public boolean determineNodeOrder() {
     Node firstNode = mainController.getNodesSelected().get(0);
     Node secondNode = mainController.getNodesSelected().get(1);
-    return firstNode instanceof MessageNode &&
-        secondNode instanceof ParityNode;
+    return firstNode instanceof MessageNode
+        && secondNode instanceof ParityNode;
   }
 
   /**
@@ -47,6 +47,7 @@ public class Connection extends Line {
 
   /**
    * Sets a binding between two nodes.
+   *
    * <p>
    * Ensures that the connection is maintained when the nodes are repositioned.
    *

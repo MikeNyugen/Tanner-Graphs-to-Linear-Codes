@@ -12,6 +12,7 @@ import static jfxtras.labs.util.event.MouseControlUtil.makeDraggable;
 
 /**
  * JavaFX component representing a message node.
+ *
  * <p>
  * New components must extend from an existing JavaFX component to be displayed.
  */

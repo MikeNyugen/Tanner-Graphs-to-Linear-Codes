@@ -109,8 +109,9 @@ public class MainController implements Initializable {
 
       generateAdjacencyMatrix();
 
+      int messageLength = sourceBits - parityBits;
       DoubleMatrix messages = matrix.generateMessages(sourceBits - parityBits);
-      DoubleMatrix codeWords = matrix.parityCheckToCodeWords(adjacencyMatrix, sourceBits, parityBits, sourceBits - parityBits);
+      DoubleMatrix codeWords = matrix.parityCheckToCodeWords(adjacencyMatrix, sourceBits, parityBits, messageLength);
 
       populateTableView(displayTable, messages, codeWords);
 
@@ -143,7 +144,8 @@ public class MainController implements Initializable {
 
   private void displayParityMatrix(int sourceBits, int parityBits) {
     Matrix matrix = new Matrix();
-    DoubleMatrix parityMatrix = matrix.createDisplayParityMatrix(matrix.createParityMatrix(adjacencyMatrix, parityBits, sourceBits - parityBits), parityBits);
+    int messageLength = sourceBits - parityBits;
+    DoubleMatrix parityMatrix = matrix.createDisplayParityMatrix(matrix.createParityMatrix(adjacencyMatrix, parityBits, messageLength), parityBits);
 
     String row = "";
     for (int i = 0; i < parityMatrix.rows; i++) {
