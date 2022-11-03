@@ -81,6 +81,11 @@ public class MainController implements Initializable {
       selectButtonIsSelected = true;
       removeSelectionIsSelected = false;
     });
+    selectButton.setOnKeyPressed(event -> {
+      if (event.getCode().toString().equals("A")) {
+        connectNodes();
+      }
+    });
     removeSelection.setOnMouseClicked(event -> {
       selectButtonIsSelected = false;
       removeSelectionIsSelected = true;
@@ -105,8 +110,7 @@ public class MainController implements Initializable {
       generateAdjacencyMatrix();
 
       DoubleMatrix messages = matrix.generateMessages(sourceBits - parityBits);
-      DoubleMatrix codeWords = matrix.parityCheckToCodeWords(adjacencyMatrix, sourceBits, parityBits,
-          sourceBits - parityBits);
+      DoubleMatrix codeWords = matrix.parityCheckToCodeWords(adjacencyMatrix, sourceBits, parityBits, sourceBits - parityBits);
 
       populateTableView(displayTable, messages, codeWords);
 
@@ -139,8 +143,7 @@ public class MainController implements Initializable {
 
   private void displayParityMatrix(int sourceBits, int parityBits) {
     Matrix matrix = new Matrix();
-    DoubleMatrix parityMatrix = matrix.createDisplayParityMatrix(matrix.createParityMatrix(
-        adjacencyMatrix, parityBits, sourceBits - parityBits), parityBits);
+    DoubleMatrix parityMatrix = matrix.createDisplayParityMatrix(matrix.createParityMatrix(adjacencyMatrix, parityBits, sourceBits - parityBits), parityBits);
 
     String row = "";
     for (int i = 0; i < parityMatrix.rows; i++) {

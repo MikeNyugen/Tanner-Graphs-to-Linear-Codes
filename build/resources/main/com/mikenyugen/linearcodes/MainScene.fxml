@@ -17,11 +17,11 @@
 <?import javafx.scene.text.Text?>
 <?import javafx.scene.text.TextFlow?>
 
-<SplitPane fx:id="splitPane" dividerPositions="0.2031" maxHeight="777.0" maxWidth="1277.0" minHeight="720.0" minWidth="1080.0" prefHeight="777.0" prefWidth="1277.0" style="-fx-background-color: #DCDCDC;" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.mikenyugen.linearcodes.controllers.MainController">
+<SplitPane fx:id="splitPane" dividerPositions="0.2031" maxHeight="1100.0" maxWidth="1700.0" minHeight="1100.0" minWidth="1700.0" prefHeight="1100.0" prefWidth="1700.0" style="-fx-background-color: #DCDCDC;" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.mikenyugen.linearcodes.controllers.MainController">
     <items>
         <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="160.0" prefWidth="100.0">
             <children>
-                <Accordion fx:id="accordion" layoutX="-28.0" layoutY="78.0" prefHeight="398.0" prefWidth="174.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                <Accordion fx:id="accordion" layoutX="-28.0" layoutY="78.0" prefHeight="1098.0" prefWidth="318.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                     <panes>
                         <TitledPane fx:id="configure" text="Configure">
                             <content>
@@ -66,12 +66,12 @@
                 </Accordion>
             </children>
         </AnchorPane>
-        <AnchorPane fx:id="anchorPane" minHeight="0.0" minWidth="0.0" prefHeight="160.0" prefWidth="100.0">
+        <AnchorPane fx:id="anchorPane" minHeight="0.0" minWidth="0.0" prefHeight="1098.0" prefWidth="1371.0">
             <children>
-                <Pane fx:id="pane" layoutX="8.0" layoutY="42.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="1414.0" prefWidth="2173.0" style="-fx-background-color: white;" />
-                <HBox layoutX="7.0" layoutY="-1.0" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="43.0" prefWidth="1006.0" spacing="2.0" style="-fx-border-color: SILVER; -fx-border-width: 2;">
+                <Pane fx:id="pane" layoutX="14.0" layoutY="42.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="1414.0" prefWidth="2173.0" style="-fx-background-color: white;" />
+                <HBox layoutX="14.0" layoutY="-1.0" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="43.0" prefWidth="1339.0" spacing="2.0" style="-fx-border-color: SILVER; -fx-border-width: 2;">
                     <children>
-                        <ToggleButton fx:id="drag" mnemonicParsing="false" prefHeight="39.0" prefWidth="68.0" selected="true" toggleGroup="$nodes">
+                        <ToggleButton fx:id="drag" mnemonicParsing="false" prefHeight="39.0" prefWidth="95.0" selected="true" toggleGroup="$nodes">
                             <toggleGroup>
                                 <ToggleGroup fx:id="nodes" />
                             </toggleGroup>
@@ -84,21 +84,70 @@
                             </graphic>
 
                         </ToggleButton>
-                        <ToggleButton fx:id="selectButton" mnemonicParsing="false" prefHeight="39.0" prefWidth="101.0" text="Select" toggleGroup="$nodes">
+                        <ToggleButton fx:id="selectButton" mnemonicParsing="false" prefHeight="39.0" prefWidth="124.0" text="Select" toggleGroup="$nodes">
                      <graphic>
-                        <ImageView fitHeight="20.0" fitWidth="19.0" pickOnBounds="true" preserveRatio="true">
+                        <ImageView fitHeight="24.0" fitWidth="22.0" pickOnBounds="true" preserveRatio="true">
                            <image>
-                              <Image url="@../../../Images/click.png" />
+                              <Image url="@../../../Images/circle.png" />
                            </image>
                         </ImageView>
                      </graphic></ToggleButton>
-                        <ToggleButton fx:id="removeSelection" mnemonicParsing="false" prefHeight="38.0" prefWidth="136.0" text="Remove Selection" toggleGroup="$nodes" />
-                        <ToggleButton fx:id="addMessageNode" alignment="CENTER_LEFT" mnemonicParsing="false" prefHeight="39.0" prefWidth="137.0" text="Add Message Node" toggleGroup="$nodes" />
-                        <ToggleButton fx:id="addParityNode" alignment="CENTER_LEFT" mnemonicParsing="false" prefHeight="39.0" prefWidth="120.0" text="Add Check Node" toggleGroup="$nodes" />
-                        <Button fx:id="addConnection" mnemonicParsing="false" prefHeight="39.0" prefWidth="144.0" text="Add Connection " />
-                        <ToggleButton fx:id="removeConnection" mnemonicParsing="false" prefHeight="39.0" prefWidth="136.0" text="Remove Connection" toggleGroup="$nodes" />
-                        <Button fx:id="reset" mnemonicParsing="false" prefHeight="38.0" prefWidth="63.0" text="Reset" />
-                        <Button fx:id="run" mnemonicParsing="false" prefHeight="39.0" prefWidth="85.0" text="Run" />
+                        <ToggleButton fx:id="removeSelection" mnemonicParsing="false" prefHeight="38.0" prefWidth="163.0" text="Remove Selection" toggleGroup="$nodes">
+                     <graphic>
+                        <ImageView fitHeight="21.0" fitWidth="18.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../../../Images/cross.png" />
+                           </image>
+                        </ImageView>
+                     </graphic></ToggleButton>
+                        <ToggleButton fx:id="addMessageNode" alignment="CENTER_LEFT" mnemonicParsing="false" prefHeight="39.0" prefWidth="173.0" text="Add Message Node" toggleGroup="$nodes">
+                     <graphic>
+                        <ImageView fitHeight="23.0" fitWidth="26.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../../../Images/add.png" />
+                           </image>
+                        </ImageView>
+                     </graphic></ToggleButton>
+                        <ToggleButton fx:id="addParityNode" alignment="CENTER_LEFT" mnemonicParsing="false" prefHeight="39.0" prefWidth="193.0" text="Add Parity-Check Node" toggleGroup="$nodes">
+                     <graphic>
+                        <ImageView fitHeight="23.0" fitWidth="26.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../../../Images/add.png" />
+                           </image>
+                        </ImageView>
+                     </graphic></ToggleButton>
+                        <Button fx:id="addConnection" mnemonicParsing="false" prefHeight="39.0" prefWidth="165.0" text="Add Connection ">
+                     <graphic>
+                        <ImageView fitHeight="22.0" fitWidth="25.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../../../Images/connect.png" />
+                           </image>
+                        </ImageView>
+                     </graphic></Button>
+                        <ToggleButton fx:id="removeConnection" mnemonicParsing="false" prefHeight="39.0" prefWidth="174.0" text="Remove Connection" toggleGroup="$nodes">
+                     <graphic>
+                        <ImageView fitHeight="21.0" fitWidth="18.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../../../Images/cross.png" />
+                           </image>
+                        </ImageView>
+                     </graphic></ToggleButton>
+                        <Button fx:id="reset" mnemonicParsing="false" prefHeight="38.0" prefWidth="123.0" text="Reset">
+                     <graphic>
+                        <ImageView fitHeight="26.0" fitWidth="27.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../../../Images/reset.png" />
+                           </image>
+                        </ImageView>
+                     </graphic></Button>
+                        <Button fx:id="run" mnemonicParsing="false" prefHeight="39.0" prefWidth="122.0" text="Run">
+                     <graphic>
+                        <ImageView fitHeight="29.0" fitWidth="38.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../../../Images/run.png" />
+                           </image>
+                        </ImageView>
+                     </graphic></Button>
                     </children>
                 </HBox>
             </children>
